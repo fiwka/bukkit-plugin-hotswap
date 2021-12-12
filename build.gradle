@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+group 'ru.kdev'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+}
+
+dependencies {
+    compileOnly fileTree("libs")
+
+    compileOnly ('org.spigotmc:plugin-annotations:1.2.3-SNAPSHOT') {
+        exclude group: 'org.bukkit', module: 'bukkit'
+    }
+    annotationProcessor 'org.spigotmc:plugin-annotations:1.2.3-SNAPSHOT'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+}
+
+test {
+    useJUnitPlatform()
+}
